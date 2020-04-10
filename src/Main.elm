@@ -76,12 +76,12 @@ view model =
             , Html.Attributes.style "height" "50px"
             , Html.Attributes.style "width" "50px"
             ]
-            [ text
-                ("sodifjsdoifjsdoifjosdijfoisd"
-                 --++ String.fromFloat model.x
-                 --++ " y="
-                 --++ String.fromFloat model.y
-                )
+            [ div
+                [ Html.Attributes.style "background-color" "gray"
+                , Html.Attributes.style "width" "25px"
+                , Html.Attributes.style "height" "50px"
+                ]
+                []
             ]
         ]
 
