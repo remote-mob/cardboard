@@ -1,9 +1,13 @@
 module Main exposing (Model, Msg(..), initialModel, main, update, view)
 
 import Browser
+import Color
 import Html exposing (Html, div)
 import Html.Attributes
 import Html.Events.Extra.Pointer as Pointer
+import TypedSvg exposing (rect, svg)
+import TypedSvg.Attributes exposing (fill, height, width, x, y)
+import TypedSvg.Types as Paint exposing (Paint, px)
 
 
 type alias Model =
@@ -58,30 +62,21 @@ view model =
                 Nothing ->
                     ( 0, 0 )
     in
-    div
-        [ Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
+    svg
+        [ height <| px 400
+        , width <| px 400
+        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
         , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
-        , Html.Attributes.style "height" "400px"
-        , Html.Attributes.style "width" "400px"
-        , Html.Attributes.style "background-color" "red"
-        , Html.Attributes.style "touch-action" "none"
         ]
-        [ div
-            [ Html.Attributes.style "top" <| (String.fromFloat yPos ++ "px")
-            , Html.Attributes.style "left" <| (String.fromFloat xPos ++ "px")
-            , Html.Attributes.style "position" "absolute"
-            , Html.Attributes.style "background-color" "white"
-            , Html.Attributes.style "height" "50px"
-            , Html.Attributes.style "width" "50px"
+        [ rect
+            [ width <| px 50
+            , height <| px 50
+            , fill <| Paint.Paint Color.red
+            , x <| px xPos
+            , y <| px yPos
             ]
-            [ div
-                [ Html.Attributes.style "background-color" "gray"
-                , Html.Attributes.style "width" "40%"
-                , Html.Attributes.style "height" "50px"
-                ]
-                []
-            ]
+            []
         ]
 
 
