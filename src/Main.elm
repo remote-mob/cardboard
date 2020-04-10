@@ -54,7 +54,7 @@ view model =
         ( xPos, yPos ) =
             case model of
                 Just { x, y } ->
-                    ( x + 25, y + 25 )
+                    ( x, y )
 
                 Nothing ->
                     ( 0, 0 )
@@ -62,7 +62,7 @@ view model =
     div
         [ Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
         , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
-        , Pointer.onMove (\event -> PointerMoveMsg event.pointer.offsetPos)
+        , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         , Html.Attributes.style "height" "400px"
         , Html.Attributes.style "width" "400px"
         , Html.Attributes.style "background-color" "red"
