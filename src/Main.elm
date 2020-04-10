@@ -5,18 +5,28 @@ import Color
 import Html exposing (Html, div)
 import Html.Attributes
 import Html.Events.Extra.Pointer as Pointer
-import TypedSvg exposing (rect, svg)
-import TypedSvg.Attributes exposing (fill, height, width, x, y)
+import TypedSvg exposing (circle, rect, svg)
+import TypedSvg.Attributes exposing (cx, cy, fill, height, r, stroke, width, x, y)
 import TypedSvg.Types as Paint exposing (Paint, px)
 
 
 type alias Model =
-    Maybe { x : Float, y : Float }
+    { cardPos :
+        { x : Float
+        , y : Float
+        }
+    , lockState : LockState
+    }
+
+
+type LockState
+    = Open
+    | Locked
 
 
 initialModel : Model
 initialModel =
-    Nothing
+    { cardPos = { x = 0, y = 0 }, lockState = Open }
 
 
 type Msg
@@ -29,60 +39,82 @@ update : Msg -> Model -> Model
 update msg model =
     let
         active =
-            case model of
-                Just _ ->
-                    True
-
-                Nothing ->
-                    False
+            model.lockState == Locked
     in
     case msg of
         PointerDownMsg ( newX, newY ) ->
-            Just { x = newX, y = newY }
+            { model
+                | cardPos = { x = newX, y = newY }
+                , lockState = Locked
+            }
 
         PointerUpMsg ( newX, newY ) ->
-            Nothing
+            { model
+                | lockState = Open
+            }
 
         PointerMoveMsg ( newX, newY ) ->
             if active then
-                Just { x = newX, y = newY }
+                { model | cardPos = { x = newX, y = newY } }
 
             else
-                Nothing
+                model
 
 
 view : Model -> Html Msg
 view model =
     let
         ( xPos, yPos ) =
-            case model of
-                Just { x, y } ->
+            case model.cardPos of
+                { x, y } ->
                     ( x, y )
 
-                Nothing ->
-                    ( 0, 0 )
+        surface =
+            svg
+                [ Html.Attributes.style "width" "100%"
+                , Html.Attributes.style "height" "100%"
+                , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
+                , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
+                , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
+                ]
+                [ rect
+                    [ width <| px 50
+                    , height <| px 50
+                    , fill <| Paint.Paint Color.red
+                    , x <| px xPos
+                    , y <| px yPos
+                    ]
+                    []
+                , circle
+                    [ cx (px 25)
+                    , cy (px 25)
+                    , fill <| Paint.Paint Color.gray
+                    , r (px 25)
+                    ]
+                    []
+                ]
     in
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
         ]
-        [ svg
-            [ Html.Attributes.style "width" "100%"
-            , Html.Attributes.style "height" "100%"
-            , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
-            , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
-            , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
+        (if model.lockState == Locked then
+            [ surface
             ]
-            [ rect
-                [ width <| px 50
-                , height <| px 50
-                , fill <| Paint.Paint Color.red
-                , x <| px xPos
-                , y <| px yPos
+
+         else
+            [ surface
+            , div
+                [ Html.Attributes.style "position"
+                    "absolute"
+                , Html.Attributes.style
+                    "top"
+                    "0px"
                 ]
-                []
+                [ Html.text "hejsan"
+                ]
             ]
-        ]
+        )
 
 
 main : Program () Model Msg
