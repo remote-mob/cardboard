@@ -1,9 +1,8 @@
 module Main exposing (Model, Msg(..), initialModel, main, update, view)
 
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, div)
 import Html.Attributes
-import Html.Events exposing (onClick)
 import Html.Events.Extra.Pointer as Pointer
 
 
