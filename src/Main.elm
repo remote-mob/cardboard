@@ -78,7 +78,7 @@ view model =
             ]
             [ div
                 [ Html.Attributes.style "background-color" "gray"
-                , Html.Attributes.style "width" "25px"
+                , Html.Attributes.style "width" "40%"
                 , Html.Attributes.style "height" "50px"
                 ]
                 []
