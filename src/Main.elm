@@ -62,21 +62,26 @@ view model =
                 Nothing ->
                     ( 0, 0 )
     in
-    svg
-        [ height <| px 400
-        , width <| px 400
-        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
-        , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
-        , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
+    div
+        [ Html.Attributes.style "width" "100vw"
+        , Html.Attributes.style "height" "100vh"
         ]
-        [ rect
-            [ width <| px 50
-            , height <| px 50
-            , fill <| Paint.Paint Color.red
-            , x <| px xPos
-            , y <| px yPos
+        [ svg
+            [ Html.Attributes.style "width" "100%"
+            , Html.Attributes.style "height" "100%"
+            , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
+            , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
+            , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
             ]
-            []
+            [ rect
+                [ width <| px 50
+                , height <| px 50
+                , fill <| Paint.Paint Color.red
+                , x <| px xPos
+                , y <| px yPos
+                ]
+                []
+            ]
         ]
 
 
