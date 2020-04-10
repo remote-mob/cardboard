@@ -77,7 +77,7 @@ view model =
             , Html.Attributes.style "width" "50px"
             ]
             [ text
-                (""
+                ("sodifjsdoifjsdoifjosdijfoisd"
                  --++ String.fromFloat model.x
                  --++ " y="
                  --++ String.fromFloat model.y
