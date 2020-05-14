@@ -13,7 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "elm reactor",
     "format": "elm-format --yes src/Main.elm",
-    "elm-live": "elm-live src/Main.elm"
+    "elm-live": "elm-live src/Main.elm",
+    "build": "elm make --debug src/Main.elm"
   },
   "repository": {
     "type": "git",
