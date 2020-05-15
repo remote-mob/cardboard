@@ -37,6 +37,7 @@ type Msg
     = PointerDownMsg ( Float, Float )
     | PointerUpMsg ( Float, Float )
     | PointerMoveMsg ( Float, Float )
+    | PointerDownMsgInt ( Int, Int )
 
 
 update : Msg -> Model -> Model
