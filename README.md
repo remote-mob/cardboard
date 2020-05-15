@@ -21,9 +21,9 @@ Explanatory video: https://www.youtube.com/watch?v=SuXTF_rZZRA
 
 # How to test that dev environment works
 
-1. git clone git@github.com:objarni/cardboard.git
-2. cd cardboard
-3. npm install
-4. npm run build
-5. open `cardboard/index.html` (it was created by build step)
+1. `git clone git@github.com:objarni/cardboard.git`
+2. `cd cardboard`
+3. `npm install`
+4. `npm run build`
+5. open `cardboard/index.html` in a browser (it was created by build step)
 
