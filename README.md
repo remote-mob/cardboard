@@ -12,9 +12,11 @@ Explanatory video: https://www.youtube.com/watch?v=SuXTF_rZZRA
   * Sublime Text
   * VS Code
 
-3. Make sure npm is available:
+2. Make sure npm is available:
 
    npm --version
+
+.. which should print something like 6.14 (or newer)
    
 
 # How to test that dev environment works
