@@ -30,7 +30,7 @@ type LockState
 
 initialModel : Model
 initialModel =
-    { cardPos = { x = 0, y = 0 }, lockState = Open, helloPos = {x = 75, y = 75} }
+    { cardPos = { x = 0, y = 0 }, lockState = Open, helloPos = { x = 75, y = 75 } }
 
 
 type Msg
@@ -113,10 +113,10 @@ view model =
                     "absolute"
                 , Html.Attributes.style
                     "top"
-                    "50px"
+                    (String.fromInt model.helloPos.x ++ "px")
                 , Html.Attributes.style
                     "left"
-                    "50px"
+                    (String.fromInt model.helloPos.y ++ "px")
                 ]
                 [ Html.text "Hello"
                 ]
