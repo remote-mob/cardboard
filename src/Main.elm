@@ -16,6 +16,10 @@ type alias Model =
         , y : Float
         }
     , lockState : LockState
+    , helloPos :
+        { x : Int
+        , y : Int
+        }
     }
 
 
@@ -26,7 +30,7 @@ type LockState
 
 initialModel : Model
 initialModel =
-    { cardPos = { x = 0, y = 0 }, lockState = Open }
+    { cardPos = { x = 0, y = 0 }, lockState = Open, helloPos = {x = 75, y = 75} }
 
 
 type Msg
@@ -109,9 +113,12 @@ view model =
                     "absolute"
                 , Html.Attributes.style
                     "top"
-                    "0px"
+                    "50px"
+                , Html.Attributes.style
+                    "left"
+                    "50px"
                 ]
-                [ Html.text "hejsan"
+                [ Html.text "Hello"
                 ]
             ]
         )
