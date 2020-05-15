@@ -27,3 +27,11 @@ Explanatory video: https://www.youtube.com/watch?v=SuXTF_rZZRA
 4. `npm run build`
 5. open `cardboard/index.html` in a browser (it was created by build step)
 
+
+# How to test that you can make changes and push
+
+1. Make a funny sounding branch :)
+2. Make a change in `src/Main.elm` in your editor
+3. `npm run run` and browse to `localhost:8000/src/Main.elm`
+4. Verify the change is visible
+5. Commit and push the branch
