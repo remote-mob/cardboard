@@ -5,22 +5,23 @@ Explanatory video: https://www.youtube.com/watch?v=SuXTF_rZZRA
 
 # Instructions for dev environment
 
-1. Clone this repo:
+1. Pick an editor and install Elm plugin(s):
 
-  git clone git@github.com:objarni/cardboard.git
+  * Atom
+  * IntelliJ
+  * Sublime Text
+  * VS Code
 
-2. Pick an editor that has Elm support plugin:
+3. Make sure npm is available:
 
-  Atom
-  IntelliJ
-  Sublime Text
-  VS Code
-
-3. Make sure npm is available
+   npm --version
+   
 
 # How to test that dev environment works
-1. cd cardboard
-2. npm install
-3. npm run build
-4. open the produced "index.html" in a browser
+
+1. git clone git@github.com:objarni/cardboard.git
+2. cd cardboard
+3. npm install
+4. npm run build
+5. open `cardboard/index.html` (it was created by build step)
 
