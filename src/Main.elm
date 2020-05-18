@@ -7,11 +7,11 @@ import Html.Events.Extra.Pointer as Pointer
 
 
 type alias Model =
-    { cardPos :
+    { position :
         { x : Float
         , y : Float
         }
-    , cardState : CardState
+    , state : CardState
     }
 
 
@@ -22,8 +22,8 @@ type CardState
 
 initialModel : Model
 initialModel =
-    { cardPos = { x = 0, y = 0 }
-    , cardState = Free
+    { position = { x = 0, y = 0 }
+    , state = Free
     }
 
 
@@ -38,23 +38,23 @@ update : Msg -> Model -> Model
 update msg model =
     let
         cardIsMoving =
-            model.cardState == InHand
+            model.state == InHand
     in
     case msg of
         PointerDownMsg ( newX, newY ) ->
             { model
-                | cardPos = { x = newX, y = newY }
-                , cardState = InHand
+                | position = { x = newX, y = newY }
+                , state = InHand
             }
 
         PointerUpMsg ( newX, newY ) ->
             { model
-                | cardState = Free
+                | state = Free
             }
 
         PointerMoveMsg ( newX, newY ) ->
             if cardIsMoving then
-                { model | cardPos = { x = newX, y = newY } }
+                { model | position = { x = newX, y = newY } }
 
             else
                 model
@@ -67,7 +67,7 @@ view : Model -> Html Msg
 view model =
     let
         ( xPos, yPos ) =
-            case model.cardPos of
+            case model.position of
                 { x, y } ->
                     ( x, y )
     in
