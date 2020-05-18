@@ -65,6 +65,9 @@ update msg model =
             else
                 model
 
+        PointerDownMsgInt ( x, y ) ->
+            model
+
 
 view : Model -> Html Msg
 view model =
