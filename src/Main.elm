@@ -1,13 +1,9 @@
 module Main exposing (Model, Msg(..), initialModel, main, update, view)
 
 import Browser
-import Color
 import Html exposing (Html, div)
 import Html.Attributes
 import Html.Events.Extra.Pointer as Pointer
-import TypedSvg exposing (circle, rect, svg)
-import TypedSvg.Attributes exposing (cx, cy, fill, height, r, stroke, width, x, y)
-import TypedSvg.Types as Paint exposing (Paint, px)
 
 
 type alias Model =
@@ -16,10 +12,6 @@ type alias Model =
         , y : Float
         }
     , cardState : CardState
-    , helloPos :
-        { x : Int
-        , y : Int
-        }
     }
 
 
@@ -32,7 +24,6 @@ initialModel : Model
 initialModel =
     { cardPos = { x = 0, y = 0 }
     , cardState = Free
-    , helloPos = { x = 75, y = 75 }
     }
 
 
