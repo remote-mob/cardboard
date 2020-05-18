@@ -67,12 +67,6 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    let
-        ( xPos, yPos ) =
-            case model.position of
-                { x, y } ->
-                    ( x, y )
-    in
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
@@ -85,10 +79,10 @@ view model =
                 "absolute"
             , Html.Attributes.style
                 "top"
-                (String.fromFloat yPos ++ "px")
+                (String.fromFloat model.position.y ++ "px")
             , Html.Attributes.style
                 "left"
-                (String.fromFloat xPos ++ "px")
+                (String.fromFloat model.position.x ++ "px")
             , Html.Attributes.style
                 "background-color"
                 "red"
