@@ -84,9 +84,6 @@ view model =
             svg
                 [ Html.Attributes.style "width" "100%"
                 , Html.Attributes.style "height" "100%"
-                , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
-                , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
-                , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
                 ]
                 [ rect
                     [ width <| px 50
@@ -108,6 +105,9 @@ view model =
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
+        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
+        , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
+        , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         ]
         (if model.cardState == InHand then
             [ surface
