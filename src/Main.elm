@@ -12,6 +12,7 @@ type alias Model =
         , y : Float
         }
     , state : CardState
+    , content : String
     }
 
 
@@ -24,6 +25,7 @@ initialModel : Model
 initialModel =
     { position = { x = 0, y = 0 }
     , state = Free
+    , content = "Hello x"
     }
 
 
@@ -94,7 +96,7 @@ view model =
                 "padding"
                 "0.5ex"
             ]
-            [ Html.text "Hello"
+            [ Html.text model.content
             ]
         ]
 
