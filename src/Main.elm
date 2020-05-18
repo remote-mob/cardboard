@@ -30,7 +30,10 @@ type CardState
 
 initialModel : Model
 initialModel =
-    { cardPos = { x = 0, y = 0 }, cardState = Free, helloPos = { x = 75, y = 75 } }
+    { cardPos = { x = 0, y = 0 }
+    , cardState = Free
+    , helloPos = { x = 75, y = 75 }
+    }
 
 
 type Msg
