@@ -79,28 +79,6 @@ view model =
             case model.cardPos of
                 { x, y } ->
                     ( x, y )
-
-        surface =
-            svg
-                [ Html.Attributes.style "width" "100%"
-                , Html.Attributes.style "height" "100%"
-                ]
-                [ rect
-                    [ width <| px 50
-                    , height <| px 50
-                    , fill <| Paint.Paint Color.red
-                    , x <| px xPos
-                    , y <| px yPos
-                    ]
-                    []
-                , circle
-                    [ cx (px 25)
-                    , cy (px 25)
-                    , fill <| Paint.Paint Color.gray
-                    , r (px 25)
-                    ]
-                    []
-                ]
     in
     div
         [ Html.Attributes.style "width" "100vw"
@@ -109,26 +87,25 @@ view model =
         , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         ]
-        (if model.cardState == InHand then
-            [ surface
+        [ div
+            [ Html.Attributes.style "position"
+                "absolute"
+            , Html.Attributes.style
+                "top"
+                (String.fromFloat yPos ++ "px")
+            , Html.Attributes.style
+                "left"
+                (String.fromFloat xPos ++ "px")
+            , Html.Attributes.style
+                "background-color"
+                "red"
+            , Html.Attributes.style
+                "padding"
+                "0.5ex"
             ]
-
-         else
-            [ surface
-            , div
-                [ Html.Attributes.style "position"
-                    "absolute"
-                , Html.Attributes.style
-                    "top"
-                    (String.fromInt model.helloPos.x ++ "px")
-                , Html.Attributes.style
-                    "left"
-                    (String.fromInt model.helloPos.y ++ "px")
-                ]
-                [ Html.text "Hello"
-                ]
+            [ Html.text "Hello"
             ]
-        )
+        ]
 
 
 main : Program () Model Msg
