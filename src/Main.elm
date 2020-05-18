@@ -15,7 +15,7 @@ type alias Model =
         { x : Float
         , y : Float
         }
-    , lockState : LockState
+    , cardState : CardState
     , helloPos :
         { x : Int
         , y : Int
@@ -23,14 +23,14 @@ type alias Model =
     }
 
 
-type LockState
-    = Open
-    | Locked
+type CardState
+    = Free
+    | InHand
 
 
 initialModel : Model
 initialModel =
-    { cardPos = { x = 0, y = 0 }, lockState = Open, helloPos = { x = 75, y = 75 } }
+    { cardPos = { x = 0, y = 0 }, cardState = Free, helloPos = { x = 75, y = 75 } }
 
 
 type Msg
@@ -43,23 +43,23 @@ type Msg
 update : Msg -> Model -> Model
 update msg model =
     let
-        active =
-            model.lockState == Locked
+        cardIsMoving =
+            model.cardState == InHand
     in
     case msg of
         PointerDownMsg ( newX, newY ) ->
             { model
                 | cardPos = { x = newX, y = newY }
-                , lockState = Locked
+                , cardState = InHand
             }
 
         PointerUpMsg ( newX, newY ) ->
             { model
-                | lockState = Open
+                | cardState = Free
             }
 
         PointerMoveMsg ( newX, newY ) ->
-            if active then
+            if cardIsMoving then
                 { model | cardPos = { x = newX, y = newY } }
 
             else
@@ -106,7 +106,7 @@ view model =
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
         ]
-        (if model.lockState == Locked then
+        (if model.cardState == InHand then
             [ surface
             ]
 
