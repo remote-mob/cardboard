@@ -1,4 +1,4 @@
-module Main exposing (Model, Msg(..), newCard, main, update, view)
+module Main exposing (Model, Msg(..), main, newCard, update, view)
 
 import Browser
 import Html exposing (Html, div)
@@ -9,7 +9,10 @@ import Html.Events.Extra.Pointer as Pointer
 type alias Model =
     Card
 
-type alias Model2 = List Card
+
+type alias Model2 =
+    List Card
+
 
 type alias Card =
     { position :
@@ -40,11 +43,13 @@ type Msg
     | PointerMoveMsg ( Float, Float )
     | PointerDownMsgInt ( Int, Int )
 
+
 pickupCard : Card -> Card
 pickupCard card =
     { card
         | state = InHand
     }
+
 
 update : Msg -> Model -> Model
 update msg model =
@@ -69,6 +74,34 @@ update msg model =
             model
 
 
+viewCard : Card -> Html msg
+viewCard card =
+    div
+        [ Html.Attributes.style "position"
+            "absolute"
+        , Html.Attributes.style
+            "top"
+            (String.fromFloat card.position.y ++ "px")
+        , Html.Attributes.style
+            "left"
+            (String.fromFloat card.position.x ++ "px")
+        , Html.Attributes.style
+            "background-color"
+            "lightgrey"
+        , Html.Attributes.style
+            "padding"
+            "1ex"
+        , Html.Attributes.style
+            "border"
+            "1px solid black"
+        , Html.Attributes.style
+            "border-radius"
+            "5px"
+        ]
+        [ Html.text card.content
+        ]
+
+
 view : Model -> Html Msg
 view model =
     div
@@ -78,30 +111,7 @@ view model =
         , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         ]
-        [ div
-            [ Html.Attributes.style "position"
-                "absolute"
-            , Html.Attributes.style
-                "top"
-                (String.fromFloat model.position.y ++ "px")
-            , Html.Attributes.style
-                "left"
-                (String.fromFloat model.position.x ++ "px")
-            , Html.Attributes.style
-                "background-color"
-                "lightgrey"
-            , Html.Attributes.style
-                "padding"
-                "1ex"
-            , Html.Attributes.style
-                "border"
-                "1px solid black"
-            , Html.Attributes.style
-                "border-radius"
-                "5px"
-            ]
-            [ Html.text model.content
-            ]
+        [ viewCard model
         ]
 
 
