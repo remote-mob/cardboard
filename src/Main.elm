@@ -65,7 +65,7 @@ update msg model =
                 Free ->
                     model
 
-        PointerDownMsgInt ( x, y ) ->
+        PointerDownMsgInt _ ->
             model
 
 
