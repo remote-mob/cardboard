@@ -40,14 +40,17 @@ type Msg
     | PointerMoveMsg ( Float, Float )
     | PointerDownMsgInt ( Int, Int )
 
+pickupCard : Card -> Card
+pickupCard card =
+    { card
+        | state = InHand
+    }
+
 update : Msg -> Model -> Model
 update msg model =
     case msg of
         PointerDownMsg ( newX, newY ) ->
-            { model
-                | position = { x = newX, y = newY }
-                , state = InHand
-            }
+            pickupCard model
 
         PointerUpMsg ( newX, newY ) ->
             { model
