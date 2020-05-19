@@ -9,6 +9,7 @@ import Html.Events.Extra.Pointer as Pointer
 type alias Model =
     Card
 
+type alias Model2 = List Card
 
 type alias Card =
     { position :
@@ -38,7 +39,6 @@ type Msg
     | PointerUpMsg ( Float, Float )
     | PointerMoveMsg ( Float, Float )
     | PointerDownMsgInt ( Int, Int )
-
 
 update : Msg -> Model -> Model
 update msg model =
