@@ -85,10 +85,16 @@ view model =
                 (String.fromFloat model.position.x ++ "px")
             , Html.Attributes.style
                 "background-color"
-                "red"
+                "lightgrey"
             , Html.Attributes.style
                 "padding"
-                "0.5ex"
+                "1ex"
+            , Html.Attributes.style
+                "border"
+                "1px solid black"
+            , Html.Attributes.style
+                "border-radius"
+                "5px"
             ]
             [ Html.text model.content
             ]
