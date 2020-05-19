@@ -21,7 +21,7 @@ Explanatory video: https://www.youtube.com/watch?v=SuXTF_rZZRA
 
 # How to test that dev environment works
 
-1. `git clone git@github.com:objarni/cardboard.git`
+1. `git clone git@github.com:remote-mob/cardboard.git`
 2. `cd cardboard`
 3. `npm install`
 4. `npm run build`
