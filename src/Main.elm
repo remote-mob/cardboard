@@ -1,4 +1,4 @@
-module Main exposing (Model, Msg(..), initialModel, main, update, view)
+module Main exposing (Model, Msg(..), newCard, main, update, view)
 
 import Browser
 import Html exposing (Html, div)
@@ -26,8 +26,8 @@ type CardState
     | InHand
 
 
-initialModel : Model
-initialModel =
+newCard : Card
+newCard =
     { position = { x = 0, y = 0 }
     , state = Free
     , content = "Hello x"
@@ -105,7 +105,7 @@ view model =
 main : Program () Model Msg
 main =
     Browser.sandbox
-        { init = initialModel
+        { init = newCard
         , view = view
         , update = update
         }
