@@ -51,6 +51,23 @@ pickupCard card =
     }
 
 
+dropCard : Card -> Card
+dropCard card =
+    { card
+        | state = Free
+    }
+
+
+moveCard : Float -> Float -> (Card -> Card)
+moveCard x y card =
+    case card.state of
+        InHand ->
+            { card | position = { x = x, y = y } }
+
+        Free ->
+            card
+
+
 update : Msg -> Model -> Model
 update msg model =
     case msg of
@@ -58,17 +75,10 @@ update msg model =
             pickupCard model
 
         PointerUpMsg ( newX, newY ) ->
-            { model
-                | state = Free
-            }
+            dropCard model
 
         PointerMoveMsg ( newX, newY ) ->
-            case model.state of
-                InHand ->
-                    { model | position = { x = newX, y = newY } }
-
-                Free ->
-                    model
+            moveCard newX newY model
 
         PointerDownMsgInt _ ->
             model
