@@ -119,7 +119,7 @@ view model =
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
-        , Pointer.onUp (\_ -> PointerUpMsg)
+        , Pointer.onUp (always PointerUpMsg)
         ]
         (List.map viewCard cards)
 
