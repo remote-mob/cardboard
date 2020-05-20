@@ -39,7 +39,7 @@ newCard =
 
 type Msg
     = PointerDownMsg
-    | PointerUpMsg ( Float, Float )
+    | PointerUpMsg
     | PointerMoveMsg ( Float, Float )
 
 
@@ -73,7 +73,7 @@ update msg model =
         PointerDownMsg ->
             pickupCard model
 
-        PointerUpMsg ( newX, newY ) ->
+        PointerUpMsg ->
             dropCard model
 
         PointerMoveMsg ( newX, newY ) ->
@@ -119,7 +119,7 @@ view model =
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
-        , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
+        , Pointer.onUp (\_ -> PointerUpMsg)
         ]
         (List.map viewCard cards)
 
