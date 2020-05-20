@@ -84,7 +84,7 @@ update msg model =
             model
 
 
-viewCard : Card -> Html msg
+viewCard : Card -> Html Msg
 viewCard card =
     div
         [ Html.Attributes.style "position"
@@ -107,6 +107,7 @@ viewCard card =
         , Html.Attributes.style
             "border-radius"
             "5px"
+        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
         ]
         [ Html.text card.content
         ]
@@ -121,9 +122,8 @@ view model =
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
-        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
-        , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
+        , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
         ]
         (List.map viewCard cards)
 
