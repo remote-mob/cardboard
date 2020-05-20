@@ -114,6 +114,10 @@ viewCard card =
 
 view : Model -> Html Msg
 view model =
+    let
+        cards =
+            [ model ]
+    in
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
@@ -121,8 +125,7 @@ view model =
         , Pointer.onUp (\event -> PointerUpMsg event.pointer.offsetPos)
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         ]
-        [ viewCard model
-        ]
+        (List.map viewCard cards)
 
 
 main : Program () Model Msg
