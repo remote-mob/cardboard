@@ -10,10 +10,6 @@ type alias Model =
     Card
 
 
-type alias Model2 =
-    List Card
-
-
 type alias Card =
     { position :
         { x : Float
