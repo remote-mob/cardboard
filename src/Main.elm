@@ -41,7 +41,6 @@ type Msg
     = PointerDownMsg
     | PointerUpMsg ( Float, Float )
     | PointerMoveMsg ( Float, Float )
-    | PointerDownMsgInt ( Int, Int )
 
 
 pickupCard : Card -> Card
@@ -79,9 +78,6 @@ update msg model =
 
         PointerMoveMsg ( newX, newY ) ->
             moveCard newX newY model
-
-        PointerDownMsgInt _ ->
-            model
 
 
 viewCard : Card -> Html Msg
