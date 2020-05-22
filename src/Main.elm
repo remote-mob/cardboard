@@ -8,26 +8,13 @@ import Html.Events.Extra.Pointer as Pointer
 
 
 type alias Model =
-    Card
+    Card.Card
 
 
-type alias Card =
-    { position :
-        { x : Float
-        , y : Float
-        }
-    , state : Card.CardState
-    , content : String
-    , cardOffset :
-        Maybe
-            -- @todo extract Position type?
-            { x : Float
-            , y : Float
-            }
-    }
 
 
-initModel : Card
+
+initModel : Model
 initModel =
     { position = { x = 0, y = 0 }
     , state = Card.Free
@@ -42,52 +29,20 @@ type Msg
     | PointerMoveMsg ( Float, Float )
 
 
-pickupCard : Float -> Float -> Card -> Card
-pickupCard x y card =
-    { card
-        | state = Card.InHand { x = x, y = y }
-        , cardOffset = Just { x = x, y = y } -- TODO: Completely remove cardOffset
-    }
-
-
-dropCard : Card -> Card
-dropCard card =
-    { card
-        | state = Card.Free
-    }
-
-
-moveCard : Float -> Float -> (Card -> Card)
-moveCard mx my card =
-    case card.state of
-        Card.InHand offset ->
-            let
-                newX =
-                    mx - offset.x
-
-                newY =
-                    my - offset.y
-            in
-            { card | position = { x = newX, y = newY } }
-
-        Card.Free ->
-            card
-
-
 update : Msg -> Model -> Model
 update msg model =
     case msg of
         PointerDownMsg ( x, y ) ->
-            pickupCard x y model
+            Card.pickupCard x y model
 
         PointerUpMsg ->
-            dropCard model
+            Card.dropCard model
 
         PointerMoveMsg ( newX, newY ) ->
-            moveCard newX newY model
+            Card.moveCard newX newY model
 
 
-viewCard : Card -> Html Msg
+viewCard : Card.Card -> Html Msg
 viewCard card =
     div
         [ Html.Attributes.style "position"
