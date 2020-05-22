@@ -62,10 +62,20 @@ dropCard card =
 
 
 moveCard : Float -> Float -> (Card -> Card)
-moveCard x y card =
+moveCard mx my card =
+    let
+        offset =
+            Maybe.withDefault { x = 0, y = 0 } card.cardOffset
+
+        newX =
+            mx - offset.x
+
+        newY =
+            my - offset.y
+    in
     case card.state of
         InHand ->
-            { card | position = { x = x, y = y } }
+            { card | position = { x = newX, y = newY } }
 
         Free ->
             card
