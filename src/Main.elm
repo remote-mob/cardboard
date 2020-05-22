@@ -25,10 +25,14 @@ type alias Card =
             }
     }
 
+type alias Position =
+    { x : Float
+    , y : Float
+    }
 
 type CardState
     = Free
-    | InHand
+    | InHand Position
 
 
 initModel : Card
@@ -49,8 +53,8 @@ type Msg
 pickupCard : Float -> Float -> Card -> Card
 pickupCard x y card =
     { card
-        | state = InHand
-        , cardOffset = Just { x = x, y = y }
+        | state = InHand { x = x, y = y }
+        , cardOffset = Just { x = x, y = y } -- TODO: Completely remove cardOffset
     }
 
 
@@ -63,18 +67,15 @@ dropCard card =
 
 moveCard : Float -> Float -> (Card -> Card)
 moveCard mx my card =
-    let
-        offset =
-            Maybe.withDefault { x = 0, y = 0 } card.cardOffset
-
-        newX =
-            mx - offset.x
-
-        newY =
-            my - offset.y
-    in
     case card.state of
-        InHand ->
+        InHand offset ->
+            let
+                newX =
+                    mx - offset.x
+
+                newY =
+                    my - offset.y
+            in
             { card | position = { x = newX, y = newY } }
 
         Free ->
