@@ -1,4 +1,4 @@
-module Main exposing (Model, Msg(..), main, newCard, update, view)
+module Main exposing (Model, Msg(..), main, update, view)
 
 import Browser
 import Html exposing (Html, div)
@@ -17,11 +17,12 @@ type alias Card =
         }
     , state : CardState
     , content : String
-    , cardOffset : Maybe
-        -- @todo extract Position type?
-        { x : Float
-        , y : Float
-        }
+    , cardOffset :
+        Maybe
+            -- @todo extract Position type?
+            { x : Float
+            , y : Float
+            }
     }
 
 
@@ -30,8 +31,8 @@ type CardState
     | InHand
 
 
-newCard : Card
-newCard =
+initModel : Card
+initModel =
     { position = { x = 0, y = 0 }
     , state = Free
     , content = "Hello x"
@@ -45,10 +46,11 @@ type Msg
     | PointerMoveMsg ( Float, Float )
 
 
-pickupCard : Card -> Card
-pickupCard card =
+pickupCard : Float -> Float -> Card -> Card
+pickupCard x y card =
     { card
         | state = InHand
+        , cardOffset = Just { x = x, y = y }
     }
 
 
@@ -72,8 +74,8 @@ moveCard x y card =
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        PointerDownMsg _ ->
-            pickupCard model
+        PointerDownMsg ( x, y ) ->
+            pickupCard x y model
 
         PointerUpMsg ->
             dropCard model
@@ -129,7 +131,7 @@ view model =
 main : Program () Model Msg
 main =
     Browser.sandbox
-        { init = newCard
+        { init = initModel
         , view = view
         , update = update
         }
