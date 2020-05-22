@@ -17,12 +17,8 @@ type alias Card =
         }
     , state : CardState
     , content : String
-    , mouseDownCardPos :
+    , cardOffset : Maybe
         -- @todo extract Position type?
-        { x : Float
-        , y : Float
-        }
-    , mouseDownMousePos :
         { x : Float
         , y : Float
         }
@@ -39,6 +35,7 @@ newCard =
     { position = { x = 0, y = 0 }
     , state = Free
     , content = "Hello x"
+    , cardOffset = Nothing
     }
 
 
@@ -75,7 +72,7 @@ moveCard x y card =
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        PointerDownMsg ->
+        PointerDownMsg _ ->
             pickupCard model
 
         PointerUpMsg ->
@@ -108,7 +105,7 @@ viewCard card =
         , Html.Attributes.style
             "border-radius"
             "5px"
-        , Pointer.onDown (\event -> PointerDownMsg)
+        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
         ]
         [ Html.text card.content
         ]
@@ -126,7 +123,7 @@ view model =
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         , Pointer.onUp (always PointerUpMsg)
         ]
-        (List.map (viewCard event.pointer.pagePos) cards)
+        (List.map viewCard cards)
 
 
 main : Program () Model Msg
