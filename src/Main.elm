@@ -17,6 +17,15 @@ type alias Card =
         }
     , state : CardState
     , content : String
+    , mouseDownCardPos :
+        -- @todo extract Position type?
+        { x : Float
+        , y : Float
+        }
+    , mouseDownMousePos :
+        { x : Float
+        , y : Float
+        }
     }
 
 
@@ -34,7 +43,7 @@ newCard =
 
 
 type Msg
-    = PointerDownMsg
+    = PointerDownMsg ( Float, Float )
     | PointerUpMsg
     | PointerMoveMsg ( Float, Float )
 
@@ -117,7 +126,7 @@ view model =
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         , Pointer.onUp (always PointerUpMsg)
         ]
-        (List.map viewCard cards)
+        (List.map (viewCard event.pointer.pagePos) cards)
 
 
 main : Program () Model Msg
