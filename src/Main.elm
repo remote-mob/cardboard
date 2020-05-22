@@ -8,20 +8,29 @@ import Html.Events.Extra.Pointer as Pointer
 
 
 type alias Model =
-    { cards : List Card.Card
+    { card : Card.Card
+    --cards : List Card.Card
     }
 
 
 initModel : Model
 initModel =
-    { cards =
-        [ { position = { x = 0, y = 0 }
+    { card =
+        { position = { x = 0, y = 0 }
           , state = Card.Free
           , content = "Hello x"
           , cardOffset = Nothing
           }
-        ]
     }
+
+    --{ cards =
+    --    [ { position = { x = 0, y = 0 }
+    --      , state = Card.Free
+    --      , content = "Hello x"
+    --      , cardOffset = Nothing
+    --      }
+    --    ]
+    --}
 
 
 type Msg
@@ -32,15 +41,17 @@ type Msg
 
 update : Msg -> Model -> Model
 update msg model =
-    case msg of
-        PointerDownMsg ( x, y ) ->
-            { card = Card.pickupCard x y model.card }
+    { card =
+         case msg of
+             PointerDownMsg ( x, y ) ->
+                 Card.pickupCard x y model.card
 
-        PointerUpMsg ->
-            { card = Card.dropCard model.card }
+             PointerUpMsg ->
+                 Card.dropCard model.card
 
-        PointerMoveMsg ( newX, newY ) ->
-            { cards = [ Card.moveCard newX newY model.card ] }
+             PointerMoveMsg ( newX, newY ) ->
+                 Card.moveCard newX newY model.card
+     }
 
 
 viewCard : Card.Card -> Html Msg
