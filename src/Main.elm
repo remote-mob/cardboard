@@ -8,18 +8,19 @@ import Html.Events.Extra.Pointer as Pointer
 
 
 type alias Model =
-    { card : Card.Card
+    { cards : List Card.Card
     }
 
 
 initModel : Model
 initModel =
-    { card =
-        { position = { x = 0, y = 0 }
-        , state = Card.Free
-        , content = "Hello x"
-        , cardOffset = Nothing
-        }
+    { cards =
+        [ { position = { x = 0, y = 0 }
+          , state = Card.Free
+          , content = "Hello x"
+          , cardOffset = Nothing
+          }
+        ]
     }
 
 
@@ -39,7 +40,7 @@ update msg model =
             { card = Card.dropCard model.card }
 
         PointerMoveMsg ( newX, newY ) ->
-            { card = Card.moveCard newX newY model.card }
+            { cards = [ Card.moveCard newX newY model.card ] }
 
 
 viewCard : Card.Card -> Html Msg
