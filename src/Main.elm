@@ -16,7 +16,7 @@ type alias Card =
         { x : Float
         , y : Float
         }
-    , state : CardState
+    , state : Card.CardState
     , content : String
     , cardOffset :
         Maybe
@@ -27,21 +27,10 @@ type alias Card =
     }
 
 
-type alias Position =
-    { x : Float
-    , y : Float
-    }
-
-
-type CardState
-    = Free
-    | InHand Position
-
-
 initModel : Card
 initModel =
     { position = { x = 0, y = 0 }
-    , state = Free
+    , state = Card.Free
     , content = "Hello x"
     , cardOffset = Nothing
     }
@@ -56,7 +45,7 @@ type Msg
 pickupCard : Float -> Float -> Card -> Card
 pickupCard x y card =
     { card
-        | state = InHand { x = x, y = y }
+        | state = Card.InHand { x = x, y = y }
         , cardOffset = Just { x = x, y = y } -- TODO: Completely remove cardOffset
     }
 
@@ -64,14 +53,14 @@ pickupCard x y card =
 dropCard : Card -> Card
 dropCard card =
     { card
-        | state = Free
+        | state = Card.Free
     }
 
 
 moveCard : Float -> Float -> (Card -> Card)
 moveCard mx my card =
     case card.state of
-        InHand offset ->
+        Card.InHand offset ->
             let
                 newX =
                     mx - offset.x
@@ -81,7 +70,7 @@ moveCard mx my card =
             in
             { card | position = { x = newX, y = newY } }
 
-        Free ->
+        Card.Free ->
             card
 
 
