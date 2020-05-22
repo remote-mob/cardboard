@@ -11,9 +11,6 @@ type alias Model =
     Card.Card
 
 
-
-
-
 initModel : Model
 initModel =
     { position = { x = 0, y = 0 }
@@ -44,29 +41,43 @@ update msg model =
 
 viewCard : Card.Card -> Html Msg
 viewCard card =
+    let
+        foo =
+            case card.state of
+                Card.Free ->
+                    []
+
+                Card.InHand _ ->
+                    [ Html.Attributes.style
+                        "box-shadow"
+                        "10px 5px 5px red"
+                    ]
+    in
     div
-        [ Html.Attributes.style "position"
+        ([ Html.Attributes.style "position"
             "absolute"
-        , Html.Attributes.style
+         , Html.Attributes.style
             "top"
             (String.fromFloat card.position.y ++ "px")
-        , Html.Attributes.style
+         , Html.Attributes.style
             "left"
             (String.fromFloat card.position.x ++ "px")
-        , Html.Attributes.style
+         , Html.Attributes.style
             "background-color"
             "lightgrey"
-        , Html.Attributes.style
+         , Html.Attributes.style
             "padding"
             "1ex"
-        , Html.Attributes.style
+         , Html.Attributes.style
             "border"
             "1px solid black"
-        , Html.Attributes.style
+         , Html.Attributes.style
             "border-radius"
             "5px"
-        , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
-        ]
+         , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
+         ]
+            ++ foo
+        )
         [ Html.text card.content
         ]
 
