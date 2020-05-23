@@ -49,7 +49,7 @@ and then doing the actual refactoring in the reverse order
 2020-05-15 10:00
 ----------------
 - An Elm application consists of Model, View and Update (see https://guide.elm-lang.org/architecture/)
-Model: We added a new field to the model named helloPos with x- and y-coordinates.
+- Model: We added a new field to the model named helloPos with x- and y-coordinates.
 - View function: We decided not to use the svg element for now. We decided to use the div element containing the text "Hejsan" instead. We set the position of the div element according to the helloPos field in the model. We changed the text to "Hello".
 - Update function: We added a new variant named PointerDownMsgInt to the custom type Msg (https://guide.elm-lang.org/types/custom_types.html).
 
