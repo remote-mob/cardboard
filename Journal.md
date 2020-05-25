@@ -1,3 +1,15 @@
+
+2020-05-25 07:00
+----------------
+- View with hard-coded cards.
+- Move from literal data to types.
+
+**Insights**
+* Better approach with the list of cards, nice. 
+* Better routine in the mob, nice
+* A little short with 6 minutes time slots. Some kind om flexible timer could be better.
+
+
 2020-05-22 12:00
 ----------------
 - Started implementation of multiple card feature
