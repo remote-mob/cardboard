@@ -48,7 +48,7 @@ initModel =
 
 
 type Msg
-    = PointerDownMsg ( Float, Float )
+    = PointerDownMsg Card.Card ( Float, Float )
     | PointerUpMsg
     | PointerMoveMsg ( Float, Float )
 
@@ -58,7 +58,7 @@ update msg model =
     { model
         | card =
             case msg of
-                PointerDownMsg ( x, y ) ->
+                PointerDownMsg card ( x, y ) ->
                     Card.pickupCard x y model.card
 
                 PointerUpMsg ->
@@ -104,7 +104,7 @@ viewCard card =
          , Html.Attributes.style
             "border-radius"
             "5px"
-         , Pointer.onDown (\event -> PointerDownMsg event.pointer.offsetPos)
+         , Pointer.onDown (\event -> PointerDownMsg card event.pointer.offsetPos)
          ]
             ++ foo
         )
