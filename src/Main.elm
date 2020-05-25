@@ -9,25 +9,25 @@ import Html.Events.Extra.Pointer as Pointer
 
 type alias Model =
     { card : Card.Card
-      , cards : List Card.Card
+    , cards : List Card.Card
     }
 
 
 initModel : Model
 initModel =
-    {
-         cards = [
-            { position = { x = 0, y = 0 }
-              , state = Card.Free
-              , content = "card 2"
-              , cardOffset = Nothing
-              }
-            , { position = { x = 0, y = 50 }
-              , state = Card.Free
-              , content = "card 3"
-              , cardOffset = Nothing
-            }
-        ], card =
+    { cards =
+        [ { position = { x = 0, y = 0 }
+          , state = Card.Free
+          , content = "card 2"
+          , cardOffset = Nothing
+          }
+        , { position = { x = 0, y = 50 }
+          , state = Card.Free
+          , content = "card 3"
+          , cardOffset = Nothing
+          }
+        ]
+    , card =
         { position = { x = 0, y = 0 }
         , state = Card.Free
         , content = "Hello x"
@@ -55,16 +55,17 @@ type Msg
 
 update : Msg -> Model -> Model
 update msg model =
-    { card =
-        case msg of
-            PointerDownMsg ( x, y ) ->
-                Card.pickupCard x y model.card
+    { model
+        | card =
+            case msg of
+                PointerDownMsg ( x, y ) ->
+                    Card.pickupCard x y model.card
 
-            PointerUpMsg ->
-                Card.dropCard model.card
+                PointerUpMsg ->
+                    Card.dropCard model.card
 
-            PointerMoveMsg ( newX, newY ) ->
-                Card.moveCard newX newY model.card
+                PointerMoveMsg ( newX, newY ) ->
+                    Card.moveCard newX newY model.card
     }
 
 
@@ -115,7 +116,8 @@ view : Model -> Html Msg
 view model =
     let
         cards =
-            model.card :: model.card
+            model.card :: model.cards
+    in
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
