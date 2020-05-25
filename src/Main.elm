@@ -9,6 +9,7 @@ import Html.Events.Extra.Pointer as Pointer
 
 type alias Model =
     { card : Card.Card
+
     --cards : List Card.Card
     }
 
@@ -17,20 +18,22 @@ initModel : Model
 initModel =
     { card =
         { position = { x = 0, y = 0 }
-          , state = Card.Free
-          , content = "Hello x"
-          , cardOffset = Nothing
-          }
+        , state = Card.Free
+        , content = "Hello x"
+        , cardOffset = Nothing
+        }
     }
 
-    --{ cards =
-    --    [ { position = { x = 0, y = 0 }
-    --      , state = Card.Free
-    --      , content = "Hello x"
-    --      , cardOffset = Nothing
-    --      }
-    --    ]
-    --}
+
+
+--{ cards =
+--    [ { position = { x = 0, y = 0 }
+--      , state = Card.Free
+--      , content = "Hello x"
+--      , cardOffset = Nothing
+--      }
+--    ]
+--}
 
 
 type Msg
@@ -42,16 +45,16 @@ type Msg
 update : Msg -> Model -> Model
 update msg model =
     { card =
-         case msg of
-             PointerDownMsg ( x, y ) ->
-                 Card.pickupCard x y model.card
+        case msg of
+            PointerDownMsg ( x, y ) ->
+                Card.pickupCard x y model.card
 
-             PointerUpMsg ->
-                 Card.dropCard model.card
+            PointerUpMsg ->
+                Card.dropCard model.card
 
-             PointerMoveMsg ( newX, newY ) ->
-                 Card.moveCard newX newY model.card
-     }
+            PointerMoveMsg ( newX, newY ) ->
+                Card.moveCard newX newY model.card
+    }
 
 
 viewCard : Card.Card -> Html Msg
@@ -101,7 +104,18 @@ view : Model -> Html Msg
 view model =
     let
         cards =
-            [ model.card ]
+            [ model.card
+            , { position = { x = 0, y = 0 }
+              , state = Card.Free
+              , content = "card 2"
+              , cardOffset = Nothing
+              }
+            , { position = { x = 0, y = 50 }
+              , state = Card.Free
+              , content = "card 3"
+              , cardOffset = Nothing
+              }
+            ]
     in
     div
         [ Html.Attributes.style "width" "100vw"
