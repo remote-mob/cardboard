@@ -9,14 +9,25 @@ import Html.Events.Extra.Pointer as Pointer
 
 type alias Model =
     { card : Card.Card
-
-    --cards : List Card.Card
+      , cards : List Card.Card
     }
 
 
 initModel : Model
 initModel =
-    { card =
+    {
+         cards = [
+            { position = { x = 0, y = 0 }
+              , state = Card.Free
+              , content = "card 2"
+              , cardOffset = Nothing
+              }
+            , { position = { x = 0, y = 50 }
+              , state = Card.Free
+              , content = "card 3"
+              , cardOffset = Nothing
+            }
+        ], card =
         { position = { x = 0, y = 0 }
         , state = Card.Free
         , content = "Hello x"
@@ -104,19 +115,7 @@ view : Model -> Html Msg
 view model =
     let
         cards =
-            [ model.card
-            , { position = { x = 0, y = 0 }
-              , state = Card.Free
-              , content = "card 2"
-              , cardOffset = Nothing
-              }
-            , { position = { x = 0, y = 50 }
-              , state = Card.Free
-              , content = "card 3"
-              , cardOffset = Nothing
-              }
-            ]
-    in
+            model.card :: model.card
     div
         [ Html.Attributes.style "width" "100vw"
         , Html.Attributes.style "height" "100vh"
