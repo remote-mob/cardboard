@@ -19,32 +19,18 @@ initModel =
         [ { position = { x = 0, y = 0 }
           , state = Card.Free
           , content = "card 2"
-          , cardOffset = Nothing
           }
         , { position = { x = 0, y = 50 }
           , state = Card.Free
           , content = "card 3"
-          , cardOffset = Nothing
           }
         ]
     , card =
         { position = { x = 0, y = 0 }
         , state = Card.Free
         , content = "Hello x"
-        , cardOffset = Nothing
         }
     }
-
-
-
---{ cards =
---    [ { position = { x = 0, y = 0 }
---      , state = Card.Free
---      , content = "Hello x"
---      , cardOffset = Nothing
---      }
---    ]
---}
 
 
 type Msg

@@ -11,6 +11,7 @@ type alias Position =
     , y : Float
     }
 
+
 type alias Card =
     { position :
         { x : Float
@@ -18,19 +19,13 @@ type alias Card =
         }
     , state : CardState
     , content : String
-    , cardOffset :
-        Maybe
-            -- @todo extract Position type?
-            { x : Float
-            , y : Float
-            }
     }
+
 
 pickupCard : Float -> Float -> Card -> Card
 pickupCard x y card =
     { card
         | state = InHand { x = x, y = y }
-        , cardOffset = Just { x = x, y = y } -- TODO: Completely remove cardOffset
     }
 
 
