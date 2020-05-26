@@ -1,7 +1,16 @@
 2020-05-26 19:00
 ----------------
 - Merge mob-session into master and continue development on master.
+- Made model custom type where only one of the cases can have a card in hand.
+- Inverted case expression in update and changed in to a tuple on both model and message.
 
+**Insights**
+ * Thumbs up for event-based rotation of the mob roles. 
+ * Leading mob-session with discussion was good:
+    * It put people in the same mindset, with the same goal
+    * Acts as a outlet for opinions so that we can leave them behind us, even when not all of us agree.
+ * The team could consider using the first 30 ish min to groom the TODO.   
+ 
 
 2020-05-25 07:00
 ----------------
