@@ -31,3 +31,5 @@ syntax
 - Parcel is supposedly more cross platform than
   elm-live (which has some issues in Windows?) so
   would improve the mobs hot-reloading experience
+- Refactor Model from Main.elm into Model.elm.
+- Promote Model to a "real type" (not only alias).
