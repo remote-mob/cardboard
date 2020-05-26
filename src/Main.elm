@@ -7,30 +7,35 @@ import Html.Attributes
 import Html.Events.Extra.Pointer as Pointer
 
 
-type alias Model =
-    { inHand : Card.Card
-    , cards : List Card.Card
-    }
+type Model
+    = CardsOnBoard
+        { cards : List Card.Card
+        }
+    | OneInHand
+        { inHand : Card.Card
+        , cards : List Card.Card
+        }
 
 
 initModel : Model
 initModel =
-    { cards =
-        [ { position = { x = 0, y = 0 }
-          , state = Card.Free
-          , content = "card 2"
-          }
-        , { position = { x = 0, y = 50 }
-          , state = Card.Free
-          , content = "card 3"
-          }
-        ]
-    , inHand =
-        { position = { x = 0, y = 0 }
-        , state = Card.Free
-        , content = "Hello x"
+    OneInHand
+        { cards =
+            [ { position = { x = 0, y = 0 }
+              , state = Card.Free
+              , content = "card 2"
+              }
+            , { position = { x = 0, y = 50 }
+              , state = Card.Free
+              , content = "card 3"
+              }
+            ]
+        , inHand =
+            { position = { x = 0, y = 0 }
+            , state = Card.Free
+            , content = "Hello x"
+            }
         }
-    }
 
 
 type Msg
@@ -41,18 +46,24 @@ type Msg
 
 update : Msg -> Model -> Model
 update msg model =
-    { model
-        | inHand =
-            case msg of
-                PointerDownMsg card ( x, y ) ->
-                    Card.pickupCard x y model.inHand
+    case model of
+        OneInHand { cards, inHand } ->
+            OneInHand
+                { cards = cards
+                , inHand =
+                    case msg of
+                        PointerDownMsg card ( x, y ) ->
+                            Card.pickupCard x y inHand
 
-                PointerUpMsg ->
-                    Card.dropCard model.inHand
+                        PointerUpMsg ->
+                            Card.dropCard inHand
 
-                PointerMoveMsg ( newX, newY ) ->
-                    Card.moveCard newX newY model.inHand
-    }
+                        PointerMoveMsg ( newX, newY ) ->
+                            Card.moveCard newX newY inHand
+                }
+
+        CardsOnBoard board ->
+            CardsOnBoard board
 
 
 viewCard : Card.Card -> Html Msg
@@ -101,8 +112,13 @@ viewCard card =
 view : Model -> Html Msg
 view model =
     let
-        cards =
-            model.inHand :: model.cards
+        cardsToShow =
+            case model of
+                CardsOnBoard { cards } ->
+                    cards
+
+                OneInHand { cards, inHand } ->
+                    inHand :: cards
     in
     div
         [ Html.Attributes.style "width" "100vw"
@@ -110,7 +126,7 @@ view model =
         , Pointer.onMove (\event -> PointerMoveMsg event.pointer.pagePos)
         , Pointer.onUp (always PointerUpMsg)
         ]
-        (List.map viewCard cards)
+        (List.map viewCard cardsToShow)
 
 
 main : Program () Model Msg
