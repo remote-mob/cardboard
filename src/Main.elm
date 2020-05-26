@@ -46,32 +46,30 @@ type Msg
 
 update : Msg -> Model -> Model
 update msg model =
-    case model of
-        OneInHand { cards, inHand } ->
-            case msg of
-                PointerDownMsg card ( x, y ) ->
-                    OneInHand
-                        { cards = cards
-                        , inHand =
-                            Card.pickupCard x y inHand
-                        }
+    case ( msg, model ) of
+        ( PointerDownMsg card ( x, y ), OneInHand { cards, inHand } ) ->
+            OneInHand
+                { cards = cards
+                , inHand =
+                    Card.pickupCard x y inHand
+                }
 
-                PointerUpMsg ->
-                    OneInHand
-                        { cards = cards
-                        , inHand =
-                            Card.dropCard inHand
-                        }
+        ( PointerUpMsg, OneInHand { cards, inHand } ) ->
+            OneInHand
+                { cards = cards
+                , inHand =
+                    Card.dropCard inHand
+                }
 
-                PointerMoveMsg ( newX, newY ) ->
-                    OneInHand
-                        { cards = cards
-                        , inHand =
-                            Card.moveCard newX newY inHand
-                        }
+        ( PointerMoveMsg ( newX, newY ), OneInHand { cards, inHand } ) ->
+            OneInHand
+                { cards = cards
+                , inHand =
+                    Card.moveCard newX newY inHand
+                }
 
-        CardsOnBoard board ->
-            CardsOnBoard board
+        _ ->
+            model
 
 
 viewCard : Card.Card -> Html Msg
