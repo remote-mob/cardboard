@@ -1,9 +1,7 @@
 # TODO list
 
 ## Potential App improvements
-- Seeing multiple cards, even if only one
-  card is move:able would take us closer to
-  a realistic looking board
+- Be able to move any visible card.
 - The shadow is red and looks unrealistic
 - When grabbing a card, it does not look
   as if it is 'lifted' because it stays at
