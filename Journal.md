@@ -1,3 +1,11 @@
+
+2020-06-01 07:00
+----------------
+- The shadow is red and looks unrealistic
+
+**Insights**
+
+
 2020-05-26 19:00
 ----------------
 - Merge mob-session into master and continue development on master.

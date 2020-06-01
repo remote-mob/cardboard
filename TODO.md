@@ -2,7 +2,6 @@
 
 ## Potential App improvements
 - Be able to move any visible card.
-- The shadow is red and looks unrealistic
 - When grabbing a card, it does not look
   as if it is 'lifted' because it stays at
   the exact same location as when it was on

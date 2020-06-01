@@ -83,7 +83,7 @@ viewCard card =
                 Card.InHand _ ->
                     [ Html.Attributes.style
                         "box-shadow"
-                        "10px 5px 5px red"
+                        "5px 5px 5px rgba(0, 0, 0, 0.5)"
                     ]
     in
     div
