@@ -1,7 +1,7 @@
 # TODO list
 
 ## Potential App improvements
-- Be able to move any visible card.
+
 - Animating lifting/releasing cards would look
   sweet!
 - Being able to add/remove cards one by one
@@ -13,12 +13,12 @@
 - Ability to specify url (or generate) so as to
   spread the 'board' to others for collaboration
 
-
 ## Potential Code/Development ux improvements
+
 - Continuously: fix one of the TODOs in code
 - CardState maybe not needed at all?
-- Write some unit tests just so we can learn the 
-syntax
+- Write some unit tests just so we can learn the
+  syntax
 - Learning about regression testing elm applications
   would be great (elm-program-test is popular)
 - Parcel is supposedly more cross platform than

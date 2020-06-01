@@ -49,9 +49,9 @@ update msg model =
     case ( msg, model ) of
         ( PointerDownMsg card ( x, y ), OneInHand { cards, inHand } ) ->
             OneInHand
-                { cards = cards
+                { cards = inHand :: cards |> List.filter ((/=) card)
                 , inHand =
-                    Card.pickupCard x y inHand
+                    Card.pickupCard x y card
                 }
 
         ( PointerUpMsg, OneInHand { cards, inHand } ) ->
