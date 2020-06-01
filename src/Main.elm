@@ -48,8 +48,18 @@ update : Msg -> Model -> Model
 update msg model =
     case ( msg, model ) of
         ( PointerDownMsg card ( x, y ), OneInHand { cards, inHand } ) ->
+            let
+                allCards =
+                    inHand :: cards
+
+                isNotPickedCard c =
+                    c /= card
+
+                removePickedCard cs =
+                    List.filter isNotPickedCard cs
+            in
             OneInHand
-                { cards = inHand :: cards |> List.filter ((/=) card)
+                { cards = removePickedCard allCards
                 , inHand =
                     Card.pickupCard x y card
                 }
