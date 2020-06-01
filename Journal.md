@@ -1,13 +1,19 @@
 ## 2020-06-01 07:00
 
 - The shadow is red and looks unrealistic
-- When grabbing a card, it does not look
-  as if it is 'lifted' because it stays at
-  the exact same location as when it was on
-  table. Offset slightly?
+- When grabbing a card, it does not look as if it is 'lifted' because 
+  it stays at the exact same location as when it was on table. Offset
+  slightly?
 - Be able to move any visible card.
 
 **Insights**
+
+- Event-based switches work when changes are small and there is a risk
+  that some rotations take very long.
+- Happy and surprised that we managed to complete so many TODOs.
+- Depending on the task it's good to get some help finding where in the
+  code changes should be made. The risk is that there way solutions are 
+  made is limited.
 
 ## 2020-05-26 19:00
 
