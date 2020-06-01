@@ -2,6 +2,10 @@
 2020-06-01 07:00
 ----------------
 - The shadow is red and looks unrealistic
+- When grabbing a card, it does not look
+  as if it is 'lifted' because it stays at
+  the exact same location as when it was on
+  table. Offset slightly?
 
 **Insights**
 

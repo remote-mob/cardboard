@@ -2,10 +2,6 @@
 
 ## Potential App improvements
 - Be able to move any visible card.
-- When grabbing a card, it does not look
-  as if it is 'lifted' because it stays at
-  the exact same location as when it was on
-  table. Offset slightly?
 - Animating lifting/releasing cards would look
   sweet!
 - Being able to add/remove cards one by one

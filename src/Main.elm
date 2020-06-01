@@ -84,6 +84,9 @@ viewCard card =
                     [ Html.Attributes.style
                         "box-shadow"
                         "5px 5px 5px rgba(0, 0, 0, 0.5)"
+                    , Html.Attributes.style
+                        "top"
+                        (String.fromFloat (card.position.y - 5) ++ "px")
                     ]
     in
     div
