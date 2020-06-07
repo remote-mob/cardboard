@@ -19,7 +19,7 @@ type Model
 
 initModel : Model
 initModel =
-    OneInHand
+    CardsOnBoard
         { cards =
             [ { position = { x = 0, y = 0 }
               , state = Card.Free
@@ -29,12 +29,11 @@ initModel =
               , state = Card.Free
               , content = "card 3"
               }
+            , { position = { x = 0, y = 0 }
+              , state = Card.Free
+              , content = "Hello x"
+              }
             ]
-        , inHand =
-            { position = { x = 0, y = 0 }
-            , state = Card.Free
-            , content = "Hello x"
-            }
         }
 
 
@@ -76,6 +75,20 @@ update msg model =
                 { cards = cards
                 , inHand =
                     Card.moveCard newX newY inHand
+                }
+
+        ( PointerDownMsg card ( x, y ), CardsOnBoard { cards } ) ->
+            let
+                isNotPickedCard c =
+                    c /= card
+
+                removePickedCard cs =
+                    List.filter isNotPickedCard cs
+            in
+            OneInHand
+                { cards = removePickedCard cards
+                , inHand =
+                    Card.pickupCard x y card
                 }
 
         _ ->
