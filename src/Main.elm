@@ -101,8 +101,8 @@ viewCard card =
                         "z-index"
                         "100"
                     , Html.Attributes.style
-                        "top"
-                        (String.fromFloat (card.position.y - 5) ++ "px")
+                        "transform"
+                        "translate(0,-5px)"
                     ]
     in
     div
