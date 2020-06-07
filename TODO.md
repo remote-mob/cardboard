@@ -2,9 +2,6 @@
 
 ## Potential App improvements
 
-- Animating lifting/releasing cards would look
-  sweet!
-- Strange ux: The grabbed card lies beneath others
 - Being able to add/remove cards one by one
 - Being able to bulk add cards via copy-paste
   of text

@@ -1,3 +1,15 @@
+## 2020-06-07 19:30
+
+- Animating lifting/releasing cards, using css transitions
+- The grabbed card lies above others
+
+**Insights**
+- Hard for the navigator, and the rest of the mob, to verify audio and
+  visual queues.
+- Google hangout is less cpu intensive than meet.jit.si and might be a better
+  tool for mobbing.
+- Using CSS for simple animation is easy.
+
 ## 2020-06-01 07:00
 
 - The shadow is red and looks unrealistic
