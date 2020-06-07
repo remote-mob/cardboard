@@ -96,7 +96,7 @@ viewCard card =
                         "5px 5px 5px rgba(0, 0, 0, 0.5)"
                     , Html.Attributes.style
                         "transition"
-                        "box-shadow 0.25s"
+                        "box-shadow 0.25s, transform 0.25s"
                     , Html.Attributes.style
                         "z-index"
                         "100"
