@@ -12,8 +12,7 @@
   that some rotations take very long.
 - Happy and surprised that we managed to complete so many TODOs.
 - Depending on the task it's good to get some help finding where in the
-  code changes should be made. The risk is that there way solutions are 
-  made is limited.
+  code changes should be made. The risk is that the way solutions are made are limited.
 
 ## 2020-05-26 19:00
 

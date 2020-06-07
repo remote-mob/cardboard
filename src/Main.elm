@@ -95,6 +95,9 @@ viewCard card =
                         "box-shadow"
                         "5px 5px 5px rgba(0, 0, 0, 0.5)"
                     , Html.Attributes.style
+                        "transition"
+                        "box-shadow 0.25s"
+                    , Html.Attributes.style
                         "top"
                         (String.fromFloat (card.position.y - 5) ++ "px")
                     ]
@@ -137,7 +140,7 @@ view model =
                     cards
 
                 OneInHand { cards, inHand } ->
-                    inHand :: cards
+                    cards ++ [ inHand ]
     in
     div
         [ Html.Attributes.style "width" "100vw"
