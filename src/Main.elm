@@ -98,6 +98,9 @@ viewCard card =
                         "transition"
                         "box-shadow 0.25s"
                     , Html.Attributes.style
+                        "z-index"
+                        "100"
+                    , Html.Attributes.style
                         "top"
                         (String.fromFloat (card.position.y - 5) ++ "px")
                     ]
