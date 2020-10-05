@@ -47,28 +47,11 @@ update : Msg -> Model -> Model
 update msg model =
     case ( msg, model ) of
         ( PointerDownMsg card ( x, y ), OneInHand { cards, inHand } ) ->
-            let
-                allCards =
-                    inHand :: cards
-
-                isNotPickedCard c =
-                    c /= card
-
-                removePickedCard cs =
-                    List.filter isNotPickedCard cs
-            in
-            OneInHand
-                { cards = removePickedCard allCards
-                , inHand =
-                    Card.pickupCard x y card
-                }
+            Debug.todo "This should not happen"
 
         ( PointerUpMsg, OneInHand { cards, inHand } ) ->
-            OneInHand
-                { cards = cards
-                , inHand =
-                    Card.dropCard inHand
-                }
+            CardsOnBoard
+                { cards = cards ++ [ Card.dropCard inHand ] }
 
         ( PointerMoveMsg ( newX, newY ), OneInHand { cards, inHand } ) ->
             OneInHand

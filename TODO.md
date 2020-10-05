@@ -23,9 +23,3 @@
   elm-live (which has some issues in Windows?) so
   would improve the mobs hot-reloading experience
 - Refactor Model from Main.elm into Model.elm.
-
-## Bugs
-
-- The order of cards changes when picking up a card.
-  Can be seen when two cards are stacked on each other
-  and the third card is selected.
