@@ -14,7 +14,8 @@
 ## Potential Code/Development ux improvements
 
 - Continuously: fix one of the TODOs in code
-- CardState maybe not needed at all?
+- Remove card state.
+- Extract card position from Card.
 - Write some unit tests just so we can learn the
   syntax
 - Learning about regression testing elm applications
